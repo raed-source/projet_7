@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Post } from '../models/postModel';
 
 @Component({
   selector: 'app-post',
@@ -6,19 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-title!:string;
-content!:string;
-imgUrl!:string;
-like!:string;
-dislike!:string
+  @Input() post !:Post;
+  // statique bouton***********
+  buttonText!:string;
+
   constructor() { }
 
   ngOnInit(): void {
-    this.title='post1';
-    this.content='welcome';
-    this.imgUrl='';
-    this.like='ok';
-    this.dislike=''
+
+    this.buttonText='Like';
+  }
+  // method like*****************************
+  liked(){
+    if(this.buttonText=='DisLike'){
+      this.post.like='';
+      this.buttonText='Like';
+    }else{
+      this.post.like='Ok';
+      this.buttonText='DisLike';
+
+    }
   }
 
 }

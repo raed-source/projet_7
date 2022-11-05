@@ -4,7 +4,8 @@ const postSchema = mongoose.Schema({
     content: { type: String, required: true },
     imgUrl: { type: String },
     like: { type: String },
-    dislike: { type: String }
+    dislike: { type: String },
+    dateCreate: { type: Date }
 });
 
 

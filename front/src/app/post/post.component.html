@@ -1,7 +1,12 @@
-<div class="post">
-  <h2>{{title}} </h2>
-  <p>{{content}}</p>
-  <p>{{imgUrl}}</p>
-  <p>{{like}}</p>
-  <p>{{dislike}}</p>
+<div class="post-card" [ngClass]="{ liked: buttonText === 'Like' }">
+  <h2>{{post.title }} </h2>
+  <p>{{post.content}}</p>
+  <img [src]="post.imgUrl" [alt]="post.title">
+  <p>{{post.dislike}}</p>
+  <p>{{post.dateCreate|date: 'à HH:mm, le d MMMM yyyy'}} </p>
+  <button (click)="liked()">{{buttonText}}</button>
+  <span>{{post.like}}</span>
+  <p *ngIf="post.location=='lyon'">
+    <span>{{post.location}}</span>
+  </p>
 </div>
