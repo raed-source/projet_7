@@ -9,6 +9,11 @@ import { registerLocaleData } from '@angular/common';
 import * as fr from '@angular/common/locales/fr';
 import { PostsListComponent } from './posts-list/posts-list.component';
 import { HeaderComponent } from './header/header.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { SinglePostComponent } from './single-post/single-post.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewPostComponent } from './new-post/new-post.component';
+
 
 
 @NgModule({
@@ -16,11 +21,16 @@ import { HeaderComponent } from './header/header.component';
     AppComponent,
     PostComponent,
     PostsListComponent,
-    HeaderComponent
+    HeaderComponent,
+    LandingPageComponent,
+    SinglePostComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'}
