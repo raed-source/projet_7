@@ -59,4 +59,14 @@ getPostById(id: number): Post {
       return post;
   }
 }
+addPost(formValue:{ title: string, content: string, imgUrl: string, location?: string }):void{
+const post:Post={
+  ...formValue,
+  dateCreate:new Date,
+  like:'0',
+  dislike:'0',
+  id:this.myPosts[this.myPosts.length-1].id+1
+}
+this.myPosts.push(post);
+}
 }
