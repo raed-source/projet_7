@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/postModel';
 import { PostService } from '../services/postService';
 import { ActivatedRoute } from '@angular/router';
+import { Observable, tap } from 'rxjs';
 @Component({
   selector: 'app-single-post',
   templateUrl: './single-post.component.html',
@@ -9,7 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SinglePostComponent implements OnInit {
 
-  post !:Post;
+  // post !:Post; //remplacer par Observable
+  post$!:Observable<Post>
   // statique bouton***********
   buttonText!:string;
 
@@ -18,15 +20,24 @@ export class SinglePostComponent implements OnInit {
   ngOnInit(): void {
     const postId = +this.route.snapshot.params['id'];
     this.buttonText='Like';
-    this.post = this.postService.getPostById(postId);
+    this.post$ = this.postService.getPostById(postId);
   }
   // method like*****************************
-  liked(){
+  liked(id:number){
     if(this.buttonText==='DisLike'){
-      this.postService.likedPostById(this.post.id, 'DisLike');
-      this.buttonText='Like';
+      this.postService.likedPostById(id, 'DisLike').pipe(
+        tap(()=>{
+          this.post$=this.postService.getPostById(id);
+          this.buttonText='Like';
+        })
+      ).subscribe();
     }else{
-      this.postService.likedPostById(this.post.id, 'Like');
+      this.postService.likedPostById(id, 'Like').pipe(
+        tap(()=>{
+          this.post$=this.postService.getPostById(id);
+          this.buttonText='DisLike'
+        })
+      ).subscribe();
       this.buttonText='DisLike';
 
     }

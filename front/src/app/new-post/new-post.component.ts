@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { Post } from '../models/postModel';
 import { PostService } from '../services/postService';
 import { Router } from '@angular/router';
@@ -35,7 +35,10 @@ urlRegex!: RegExp;
   }
 onSubmitForm():void{
   console.log(this.postForm.value);
-  this.postService.addPost(this.postForm.value);
-  this.router.navigateByUrl('/posts');
+  // this.postService.addPost(this.postForm.value);
+  // this.router.navigateByUrl('/posts');
+  this.postService.addPost(this.postForm.value).pipe(
+    tap(()=>this.router.navigateByUrl('/posts'))
+  ).subscribe();
 }
 }

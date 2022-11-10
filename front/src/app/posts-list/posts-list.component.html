@@ -1,1 +1,1 @@
-<app-post *ngFor="let myPost of myPosts" [post]="myPost"></app-post>
+<app-post *ngFor="let myPost of myPosts$ | async" [post]="myPost"></app-post>
