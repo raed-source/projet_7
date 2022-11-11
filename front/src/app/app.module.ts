@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { PostsModule } from './posts/posts.module';
 import { LandingPageModule } from './landing-page/landing-page.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -14,8 +14,8 @@ import { LandingPageModule } from './landing-page/landing-page.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    PostsModule,
-    LandingPageModule
+    LandingPageModule,
+    AuthModule
   ],
 
   bootstrap: [AppComponent]
