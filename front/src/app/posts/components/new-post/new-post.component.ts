@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map, Observable, tap } from 'rxjs';
-import { Post } from '../models/postModel';
-import { PostService } from '../services/postService';
+import { Post } from '../../../core/models/postModel';
+import { PostService } from '../../../core/services/postService';
 import { Router } from '@angular/router';
 
 @Component({
